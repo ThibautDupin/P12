@@ -1,0 +1,42 @@
+.avg-sessions {
+  background: #f91616;
+  border-radius: 16px;
+  padding: 0 5px;
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  max-width: 500px;
+  max-height: 500px;
+  height: 100%;
+  min-height: 0;
+}
+
+.avg-sessions__header h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.avg-sessions__chart {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+}
+
+.avg-sessions .recharts-default-tooltip {
+  background: #fff !important;
+  border: none !important;
+  color: #111827 !important;
+  border-radius: 6px;
+  padding: 6px 8px !important;
+}
+
+.avg-sessions .recharts-tooltip-item,
+.avg-sessions .recharts-tooltip-label {
+  color: #111827 !important;
+}

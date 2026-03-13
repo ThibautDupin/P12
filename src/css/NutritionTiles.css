@@ -1,0 +1,72 @@
+.nutrition-tiles {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.nutrition-tiles__tile {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 86px;
+}
+
+.nutrition-tiles__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  color: #111827;
+}
+
+.nutrition-tiles__content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nutrition-tiles__value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  display: flex;
+  gap: 4px;
+  align-items: baseline;
+}
+
+.nutrition-tiles__unit {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.nutrition-tiles__label {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.nutrition-tiles__tile--calories .nutrition-tiles__icon {
+  background: rgba(249, 115, 22, 0.15);
+  color: #f97316;
+}
+
+.nutrition-tiles__tile--proteins .nutrition-tiles__icon {
+  background: rgba(37, 99, 235, 0.15);
+  color: #2563eb;
+}
+
+.nutrition-tiles__tile--carbs .nutrition-tiles__icon {
+  background: rgba(250, 204, 21, 0.2);
+  color: #f59e0b;
+}
+
+.nutrition-tiles__tile--lipids .nutrition-tiles__icon {
+  background: rgba(236, 72, 153, 0.18);
+  color: #ec4899;
+}

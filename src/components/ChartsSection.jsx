@@ -1,6 +1,8 @@
 
 import DailyActivity from './DailyActivity.jsx'
 import AverageSessions from './AverageSessions.jsx'
+import PerformanceChart from './PerformanceChart.jsx'
+import ScoreChart from './ScoreChart.jsx'
 import NutritionTiles from './NutritionTiles.jsx'
 
 import '../css/ChartsSection.css'
@@ -17,6 +19,8 @@ function ChartsSection() {
         <div className="charts-content__main">
           <DailyActivity />
           <AverageSessions />
+          <PerformanceChart />
+          <ScoreChart score={0.7} />
         
         </div>
         <NutritionTiles />

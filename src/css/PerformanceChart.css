@@ -1,0 +1,18 @@
+.performance-chart {
+  background: #111827;
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  max-width: 500px;
+  min-height: 0;
+}
+
+.performance-chart .recharts-polar-grid-angle {
+  stroke: rgba(255, 255, 255, 0.2);
+}
+
+.performance-chart .recharts-polar-grid-concentric {
+  stroke: rgba(255, 255, 255, 0.2);
+}

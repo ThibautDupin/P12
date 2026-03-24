@@ -6,26 +6,8 @@ import {
   faDrumstickBite,
   faFireFlameCurved,
 } from '@fortawesome/free-solid-svg-icons'
-// Version importée (désactivée pour le mock local)
-// import dataSource from '../../data.js'
-// const { USER_MAIN_DATA } = dataSource
 
-// Mock local - utilisateur 12
-const USER_MAIN_DATA = [
-  {
-    id: 12,
-    keyData: {
-      calorieCount: 1930,
-      proteinCount: 155,
-      carbohydrateCount: 290,
-      lipidCount: 50,
-    },
-  },
-]
-
-function NutritionTiles() {
-  const user = USER_MAIN_DATA?.find((entry) => entry.id === 12)
-  const keyData = user?.keyData ?? {}
+function NutritionTiles({ keyData = {} }) {
 
   const tiles = [
     {

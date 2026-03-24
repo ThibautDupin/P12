@@ -9,32 +9,17 @@ import {
 } from 'recharts'
 import '../css/DailyActivity.css'
 
-// import dataSource from '../../data.js'
-// const { USER_ACTIVITY } = dataSource
-// const userActivity = USER_ACTIVITY?.find((activity) => activity.userId === 12)
-// const activitySessions = userActivity?.sessions ?? []
+function DailyActivity({ sessions = [] }) {
 
-// Mock local - utilisateur 12 (remplace la source importée si on veut tester sans API)
-const activitySessions = [
-  { day: '2020-07-01', kilogram: 69, calories: 240 },
-  { day: '2020-07-02', kilogram: 70, calories: 220 },
-  { day: '2020-07-03', kilogram: 71, calories: 280 },
-  { day: '2020-07-04', kilogram: 70, calories: 290 },
-  { day: '2020-07-05', kilogram: 69, calories: 160 },
-  { day: '2020-07-06', kilogram: 70, calories: 162 },
-  { day: '2020-07-07', kilogram: 68, calories: 390 },
-]
+  // Formatage des données pour le graphique (noms explicites + valeurs calculées)
+  const chartData = sessions.map((session) => ({
+    day: session.day,
+    weight: session.kilogram,
+    calories: session.calories,
+  }))
+  // Index affichés sur l'axe X (1..N) plutôt que les dates
+  const dayTicks = chartData.map((_, index) => index + 1)
 
-// Formatage des données pour le graphique (noms explicites + valeurs calculées)
-const chartData = activitySessions.map((session) => ({
-  day: session.day,
-  weight: session.kilogram,
-  calories: session.calories,
-}))
-// Index affichés sur l'axe X (1..N) plutôt que les dates
-const dayTicks = chartData.map((_, index) => index + 1)
-
-function DailyActivity() {
   const hasData = chartData.length > 0
 
   // Calcul des limites de l'axe Y "Poids" (kg)

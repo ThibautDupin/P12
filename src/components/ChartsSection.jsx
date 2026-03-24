@@ -4,26 +4,37 @@ import AverageSessions from './AverageSessions.jsx'
 import PerformanceChart from './PerformanceChart.jsx'
 import ScoreChart from './ScoreChart.jsx'
 import NutritionTiles from './NutritionTiles.jsx'
+import { getDashboardData } from '../services/dashboardData.js'
 
 import '../css/ChartsSection.css'
+
 function ChartsSection() {
+  const {
+    firstName,
+    score,
+    keyData,
+    activitySessions,
+    averageSessions,
+    performance,
+  } = getDashboardData(12)
+
   return (
     <section className="charts">
       <header className="charts-header">
         <h1>
-          Bienvenue <span>Thomas</span>
+          Bienvenue <span>{firstName}</span>
         </h1>
         <p>Félicitations vous avez explosé vos objectifs hier</p>
       </header>
       <div className="charts-content">
         <div className="charts-content__main">
-          <DailyActivity />
-          <AverageSessions />
-          <PerformanceChart />
-          <ScoreChart score={0.7} />
+          <DailyActivity sessions={activitySessions} />
+          <AverageSessions sessions={averageSessions} />
+          <PerformanceChart performance={performance} />
+          <ScoreChart score={score} />
         
         </div>
-        <NutritionTiles />
+        <NutritionTiles keyData={keyData} />
         
       </div>
     </section>

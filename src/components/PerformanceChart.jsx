@@ -6,7 +6,6 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 import '../css/PerformanceChart.css'
-import { USER_PERFORMANCE } from '../../data.js'
 
 const LABELS = {
   cardio: 'Cardio',
@@ -17,10 +16,9 @@ const LABELS = {
   intensity: 'Intensité',
 }
 
-function buildPerformanceData(userId) {
-  const userPerformance = USER_PERFORMANCE?.find((entry) => entry.userId === userId)
-  const kindMap = userPerformance?.kind ?? {}
-  const baseData = userPerformance?.data ?? []
+function buildPerformanceData(performance) {
+  const kindMap = performance?.kind ?? {}
+  const baseData = performance?.data ?? []
 
   return baseData
     .map((entry) => {
@@ -33,8 +31,8 @@ function buildPerformanceData(userId) {
     .reverse()
 }
 
-function PerformanceChart({ userId = 12 }) {
-  const chartData = buildPerformanceData(userId)
+function PerformanceChart({ performance }) {
+  const chartData = buildPerformanceData(performance)
 
   return (
     <section className="performance-chart">

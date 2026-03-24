@@ -8,25 +8,8 @@ import {
   YAxis,
 } from 'recharts'
 import '../css/AverageSessions.css'
-// import dataSource from '../../data.js'
-// const { USER_AVERAGE_SESSIONS } = dataSource
-// const userAverageSessions = USER_AVERAGE_SESSIONS?.find((entry) => entry.userId === 12)
-// const userSessions = userAverageSessions?.sessions ?? []
-const userSessions = [
-  { day: 1, sessionLength: 30 },
-  { day: 2, sessionLength: 23 },
-  { day: 3, sessionLength: 45 },
-  { day: 4, sessionLength: 50 },
-  { day: 5, sessionLength: 0 },
-  { day: 6, sessionLength: 0 },
-  { day: 7, sessionLength: 60 },
-]
 const dayLabels = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
 
-const chartData = userSessions.map((session) => ({
-  ...session,
-  dayLabel: dayLabels[session.day - 1] ?? session.day,
-}))
 const CustomCursor = ({ points, width, height }) => {
   if (!points || !points.length) {
     return null
@@ -46,7 +29,12 @@ const CustomCursor = ({ points, width, height }) => {
   )
 }
 /*      */
-function AverageSessions() {
+function AverageSessions({ sessions = [] }) {
+  const chartData = sessions.map((session) => ({
+    ...session,
+    dayLabel: dayLabels[session.day - 1] ?? session.day,
+  }))
+
   return (
     <section className="avg-sessions">
       {/* <header className="avg-sessions__header">

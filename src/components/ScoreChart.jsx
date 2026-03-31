@@ -6,6 +6,7 @@ import {
 } from 'recharts'
 import '../css/ScoreChart.css'
 
+// Normalise un score (0-1 ou 0-100) en ratio 0-1.
 function normalizeScore(score) {
   if (Number.isNaN(score) || score === null || score === undefined) {
     return 0
@@ -21,6 +22,7 @@ function normalizeScore(score) {
 }
 
 function ScoreChart({ score = 0.7 }) {
+  // Convertit le score en pourcentage pour l'affichage.
   const normalizedScore = normalizeScore(score)
   const percentage = Math.round(normalizedScore * 100)
   const chartData = [{ name: 'score', value: percentage }]
@@ -40,7 +42,9 @@ function ScoreChart({ score = 0.7 }) {
             endAngle={450}
             barSize={10}
           >
+            {/* Axe angulaire masqué pour une jauge propre. */}
             <PolarAngleAxis type="number" domain={[0, 100]} tick={false} />
+            {/* Arc de score rempli en rouge. */}
             <RadialBar dataKey="value" fill="#f91616" cornerRadius={10} />
           </RadialBarChart>
         </ResponsiveContainer>

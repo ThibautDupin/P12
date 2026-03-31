@@ -7,8 +7,9 @@ import {
   faFireFlameCurved,
 } from '@fortawesome/free-solid-svg-icons'
 
+// Cartes de macros (calories, protéines, glucides, lipides).
 function NutritionTiles({ keyData = {} }) {
-
+  // Prépare les tuiles à afficher avec leur icône et unité.
   const tiles = [
     {
       label: 'Calories',
@@ -42,6 +43,7 @@ function NutritionTiles({ keyData = {} }) {
 
   return (
     <section className="nutrition-tiles">
+      {/* Rend chaque tuile nutritionnelle */}
       {tiles.map((tile) => (
         <article key={tile.label} className={`nutrition-tiles__tile ${tile.className}`}>
           <div className="nutrition-tiles__icon" aria-hidden="true">

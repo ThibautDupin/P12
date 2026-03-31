@@ -10,14 +10,13 @@ import {
 import '../css/DailyActivity.css'
 
 function DailyActivity({ sessions = [] }) {
-
-  // Formatage des données pour le graphique (noms explicites + valeurs calculées)
+  // Formatage des données pour le graphique (noms explicites + valeurs calculées).
   const chartData = sessions.map((session) => ({
     day: session.day,
     weight: session.kilogram,
     calories: session.calories,
   }))
-  // Index affichés sur l'axe X (1..N) plutôt que les dates
+  // Index affichés sur l'axe X (1..N) plutôt que les dates.
   const dayTicks = chartData.map((_, index) => index + 1)
 
   const hasData = chartData.length > 0
@@ -29,7 +28,7 @@ function DailyActivity({ sessions = [] }) {
   const maxWeightCeil = Math.ceil(maxWeight + 1)
   const weightDomain = [minWeightFloor, maxWeightCeil]
   const midWeight = (minWeightFloor + maxWeightCeil) / 2
-  // Calcul des limites de l'axe Y "Calories" (kCal)
+  // Calcul des limites de l'axe Y "Calories" (kCal).
   const maxCalories = hasData ? Math.max(...chartData.map((entry) => entry.calories)) : 0
   const minCalories = hasData ? Math.min(...chartData.map((entry) => entry.calories)) : 0
   const minCaloriesFloor = Math.floor(minCalories - 75)

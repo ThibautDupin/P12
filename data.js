@@ -2,8 +2,8 @@ export const USER_MAIN_DATA = [
     {
         id: 12,
         userInfos: {
-            firstName: 'Karl',
-            lastName: 'Dovineau',
+            firstName: 'Prénom ',
+            lastName: 'Nom',
             age: 31,
         },
         todayScore: 0.12,
@@ -17,8 +17,8 @@ export const USER_MAIN_DATA = [
     {
         id: 18,
         userInfos: {
-            firstName: 'Cecilia',
-            lastName: 'Ratorez',
+            firstName: 'Prénom 2',
+            lastName: 'Nom 2',
             age: 34,
         },
         score: 0.3,

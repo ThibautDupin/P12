@@ -1,4 +1,6 @@
 
+import { useEffect, useMemo, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import DailyActivity from './DailyActivity.jsx'
 import AverageSessions from './AverageSessions.jsx'
 import PerformanceChart from './PerformanceChart.jsx'
@@ -8,7 +10,53 @@ import { getDashboardData } from '../services/dashboardData.js'
 
 import '../css/ChartsSection.css'
 
-function ChartsSection() {
+// Section principale qui orchestre le chargement et l'affichage des graphiques.
+function ChartsSection({ userId: userIdProp = 12 }) {
+  // Récupère l'ID utilisateur depuis les paramètres d'URL via useParams.
+  const { userId: userIdParam } = useParams()
+  // Utilise useMemo pour éviter de recalculer l'ID à chaque rendu.
+  const resolvedUserId = useMemo(() => {
+    // Vérifie si userIdParam est défini, sinon utilise userIdProp.
+    // Convertit simplement en nombre et retombe sur 12 si la valeur est vide.
+    const candidate = userIdParam ?? userIdProp
+    const parsed = Number(candidate)
+    return parsed || 12
+
+  }, [userIdParam, userIdProp]) // Tableau de dépendances de useMemo
+
+  // Mise en place d'un useState pour stocker les données du tableau de bord, avec des valeurs par défaut.
+  const [dashboardData, setDashboardData] = useState({
+    firstName: 'Utilisateur',
+    score: 0,
+    keyData: {},
+    activitySessions: [],
+    averageSessions: [],
+    performance: null,
+  })
+
+  useEffect(() => {
+    let isMounted = true
+
+    const loadDashboard = async () => {
+      try {
+        // Charge les données en fonction de l'utilisateur choisi.
+        const data = await getDashboardData(resolvedUserId)
+        if (isMounted) {
+          setDashboardData(data)
+        }
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    loadDashboard()
+
+    return () => {
+      isMounted = false
+    }
+  }, [resolvedUserId])
+
+  // Déstructure les données pour alimenter les sous-composants.
   const {
     firstName,
     score,
@@ -16,7 +64,7 @@ function ChartsSection() {
     activitySessions,
     averageSessions,
     performance,
-  } = getDashboardData(12)
+  } = dashboardData
 
   return (
     <section className="charts">

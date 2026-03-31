@@ -4,12 +4,6 @@ import Sidebar from './components/Sidebar.jsx'
 import ChartsSection from './components/ChartsSection.jsx'
 import './css/App.css'
 
-function Home() {
-  return (
-    <ChartsSection />
-  )
-}
-
 
 function App() {
   return (
@@ -20,7 +14,8 @@ function App() {
           <Sidebar />
           <main className="app-main">
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<ChartsSection />} />
+              <Route path="/user/:userId" element={<ChartsSection />} />
             </Routes>
           </main>
         </div>

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import '../css/Header.css'
 
+// En-tête principal avec logo et navigation.
 function Header() {
   return (
     <header className="header">
@@ -9,7 +10,7 @@ function Header() {
         <img src={logo} alt="SportSee" />
         <span>SportSee</span>
       </div>
-  <nav className="header-nav">
+      <nav className="header-nav">
         <Link to="/">Accueil</Link>
         <Link to="/profil">Profil</Link>
         <Link to="/reglage">Reglage</Link>

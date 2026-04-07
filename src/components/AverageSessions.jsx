@@ -44,7 +44,7 @@ function AverageSessions({ sessions = [] }) {
         <h2>Durée moyenne des sessions</h2>
       </header> */}
       <div className="avg-sessions__chart">
-        <ResponsiveContainer width={500} height={500}>
+        <ResponsiveContainer width={280} height={280}>
           <LineChart data={chartData}>
             {/* Axe des jours, uniquement en lettres pour garder une lecture compacte. */}
             <XAxis
@@ -56,7 +56,7 @@ function AverageSessions({ sessions = [] }) {
             {/* Axe vertical masqué, utilisé pour le domaine de la courbe. */}
             <YAxis width={0} axisLine={false} tickLine={false} tick={false} domain={['dataMin-10', 'dataMax+10']} margin={{ top: 0, right: 0, left: 0, bottom: 0 }} />
             <Tooltip
-              cursor={<CustomCursor height={500} />}
+              cursor={<CustomCursor height={250} />}
               formatter={(value) => [`${value} min`, 'Durée']}
               labelFormatter={() => ''}
             />

@@ -8,9 +8,10 @@
   gap: 8px;
   aspect-ratio: 1 / 1;
   width: 100%;
-  max-width: 500px;
+  max-width: 250px;
   min-height: 0;
   position: relative;
+  box-sizing: border-box;
 }
 
 .score-chart__header h2 {

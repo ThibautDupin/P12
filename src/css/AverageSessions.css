@@ -9,10 +9,10 @@
   gap: 8px;
   aspect-ratio: 1 / 1;
   width: 100%;
-  max-width: 500px;
-  max-height: 500px;
+  max-width: 250px;
   height: 100%;
   min-height: 0;
+  box-sizing: border-box;
 }
 
 .avg-sessions__header h2 {

@@ -1,11 +1,10 @@
 .activity {
-  background: #fff;
+  background: #FBFBFB;
   border-radius: 16px;
   padding: 20px 24px 12px;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
   display: grid;
   gap: 12px;
-  max-width: 835px;
 }
 
 .activity__header {

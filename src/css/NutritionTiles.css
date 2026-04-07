@@ -13,6 +13,7 @@
   align-items: center;
   gap: 16px;
   min-height: 86px;
+  min-width: 150px;
 }
 
 .nutrition-tiles__icon {
@@ -69,4 +70,12 @@
 .nutrition-tiles__tile--lipids .nutrition-tiles__icon {
   background: rgba(236, 72, 153, 0.18);
   color: #ec4899;
+}
+@media (max-width: 1333px) {
+  .nutrition-tiles {
+    flex-direction: row;
+    justify-content: space-between;
+    width:900px;
+  }
+
 }

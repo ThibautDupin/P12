@@ -11,22 +11,22 @@ import { getDashboardData } from '../services/dashboardData.js'
 import '../css/ChartsSection.css'
 
 // Section principale qui orchestre le chargement et l'affichage des graphiques.
-function ChartsSection({ userId: userIdProp = 12 }) {
+function ChartsSection({ userId: userIdProp }) {
   // Récupère l'ID utilisateur depuis les paramètres d'URL via useParams.
   const { userId: userIdParam } = useParams()
   // Utilise useMemo pour éviter de recalculer l'ID à chaque rendu.
   const resolvedUserId = useMemo(() => {
-    // Vérifie si userIdParam est défini, sinon utilise userIdProp.
-    // Convertit simplement en nombre et retombe sur 12 si la valeur est vide.
+  // Vérifie si userIdParam est défini, sinon utilise userIdProp.
+  // Convertit simplement en nombre ou retourne 0 si la valeur est vide.
     const candidate = userIdParam ?? userIdProp
     const parsed = Number(candidate)
-    return parsed || 12
+  return parsed || 0
 
   }, [userIdParam, userIdProp]) // Tableau de dépendances de useMemo
 
   // Mise en place d'un useState pour stocker les données du tableau de bord, avec des valeurs par défaut.
   const [dashboardData, setDashboardData] = useState({
-    firstName: 'Utilisateur',
+    firstName: '',
     score: 0,
     keyData: {},
     activitySessions: [],
@@ -70,16 +70,18 @@ function ChartsSection({ userId: userIdProp = 12 }) {
     <section className="charts">
       <header className="charts-header">
         <h1>
-          Bienvenue <span>{firstName}</span>
+          Bonjour <span>{firstName}</span>
         </h1>
         <p>Félicitations vous avez explosé vos objectifs hier</p>
       </header>
       <div className="charts-content">
         <div className="charts-content__main">
           <DailyActivity sessions={activitySessions} />
+          <div className="charts_content_stats">
           <AverageSessions sessions={averageSessions} />
           <PerformanceChart performance={performance} />
-          <ScoreChart score={score} />
+          <ScoreChart score={score} /> 
+          </div>
         
         </div>
         <NutritionTiles keyData={keyData} />

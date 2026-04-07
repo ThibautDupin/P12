@@ -14,7 +14,6 @@ function App() {
           <Sidebar />
           <main className="app-main">
             <Routes>
-              <Route path="/" element={<ChartsSection />} />
               <Route path="/user/:userId" element={<ChartsSection />} />
             </Routes>
           </main>

@@ -5,19 +5,30 @@ import {
   USER_PERFORMANCE,
 } from '../../data.js'
 import {
-  fetchUser,
-  fetchUserActivity,
-  fetchUserAverageSessions,
-  fetchUserPerformance,
+  userService,
 } from './userService.js'
 
 // Indique si l'on doit utiliser l'API distante ou les données locales.
+// Je convertis la variable d'environnement en string , je vérifie qu'elle existe 
+// (sinon je prends 'false' par défaut), 
+// je la convertis en minuscules et je la compare à 'true' pour obtenir un booléen fiable.
 const USE_API = String(import.meta.env.VITE_USE_API ?? 'false').toLowerCase() === 'true'
 
+// Utilisateur factice par défaut (aucune donnée associée).
+const FALLBACK_USER = {
+  id: 0,
+  userInfos: {
+    firstName: 'Prenom',
+    lastName: 'Nom',
+  },
+  todayScore: 0.1,
+  keyData: {},
+}
+
 // Construit un objet de tableau de bord à partir des données locales.
-function getLocalDashboardData(userId = 12) {
-  const user = USER_MAIN_DATA?.find((entry) => entry.id === userId) ?? null
-  const firstName = user?.userInfos?.firstName ?? 'Utilisateur'
+function getLocalData(userId) {
+  const user = USER_MAIN_DATA?.find((entry) => entry.id === userId) ?? FALLBACK_USER
+  const firstName = user?.userInfos?.firstName ?? FALLBACK_USER.userInfos.firstName
   const score = user?.todayScore ?? user?.score ?? 0
   const keyData = user?.keyData ?? {}
 
@@ -42,23 +53,23 @@ function getLocalDashboardData(userId = 12) {
   }
 }
 
-export async function getDashboardData(userId = 12) {
-  // Si l'API est désactivée, on renvoie directement les données locales.
+export async function getDashboardData(userId) {
+  // Si la variable d'environnement VITE_USE_API est false, on renvoie directement les données locales.
   if (!USE_API) {
-    return getLocalDashboardData(userId)
+    return getLocalData(userId)
   }
 
   // Sinon, on récupère toutes les ressources en parallèle.
   const [user, activitySessions, averageSessions, performance] = await Promise.all([
-    fetchUser(userId),
-    fetchUserActivity(userId),
-    fetchUserAverageSessions(userId),
-    fetchUserPerformance(userId),
+    userService.fetchUser(userId),
+    userService.fetchUserActivity(userId),
+    userService.fetchUserAverageSessions(userId),
+    userService.fetchUserPerformance(userId),
   ])
-
-  const firstName = user?.userInfos?.firstName ?? 'Utilisateur'
-  const score = user?.todayScore ?? user?.score ?? 0
-  const keyData = user?.keyData ?? {}
+  const resolvedUser = user ?? FALLBACK_USER
+  const firstName = resolvedUser?.userInfos?.firstName ?? FALLBACK_USER.userInfos.firstName
+  const score = resolvedUser?.todayScore ?? resolvedUser?.score ?? 0
+  const keyData = resolvedUser?.keyData ?? {}
 
   return {
     userId,

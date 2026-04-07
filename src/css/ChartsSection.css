@@ -14,7 +14,7 @@
 }
 
 .charts-header h1 span {
-  color: #2563eb;
+  color: RED;
 }
 
 .charts-header p {
@@ -23,9 +23,9 @@
 }
 
 .charts-content {
-  display: grid;
+  display: flex;
   gap: 1.5rem;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
+  flex-wrap:wrap;
   align-items: start;
   flex: 1;
   min-height: 0;
@@ -33,7 +33,17 @@
 
 .charts-content__main {
   display: grid;
+  min-width:900px;
+  box-sizing:border-box;
+  width:60%;
   gap: 1.5rem;
+}
+.charts_content_stats{
+display:flex;
+flex-direction: row;
+justify-content: space-between;
+width:100%;
+gap:1rem;
 }
 
 @media (max-width: 960px) {

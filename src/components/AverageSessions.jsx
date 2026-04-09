@@ -33,18 +33,25 @@ const CustomCursor = ({ points, width, height }) => {
 /*      */
 function AverageSessions({ sessions = [] }) {
   // Enrichit les sessions avec un libellé lisible pour l'axe des X.
-  const chartData = sessions.map((session) => ({
+  // Deux points fantômes (début et fin) permettent à la ligne de dépasser les étiquettes.
+  const realData = sessions.map((session) => ({
     ...session,
     dayLabel: dayLabels[session.day - 1] ?? session.day,
   }))
+  const chartData = [
+    { dayLabel: '', sessionLength: realData[0]?.sessionLength ?? 0 },
+    ...realData,
+    { dayLabel: '', sessionLength: realData[realData.length - 1]?.sessionLength ?? 0 },
+  ]
 
   return (
     <section className="avg-sessions">
-      {/* <header className="avg-sessions__header">
+      <header className="avg-sessions__header">
         <h2>Durée moyenne des sessions</h2>
-      </header> */}
+      </header>
       <div className="avg-sessions__chart">
-        <ResponsiveContainer width={280} height={280}>
+        <div style={{ width: 'calc(100% + 60px)', marginLeft: '-30px', height: '100%' }}>
+        <ResponsiveContainer width="100%" height="100%">
           <LineChart data={chartData}>
             {/* Axe des jours, uniquement en lettres pour garder une lecture compacte. */}
             <XAxis
@@ -54,9 +61,9 @@ function AverageSessions({ sessions = [] }) {
               stroke="rgba(255,255,255,0.7)"
             />
             {/* Axe vertical masqué, utilisé pour le domaine de la courbe. */}
-            <YAxis width={0} axisLine={false} tickLine={false} tick={false} domain={['dataMin-10', 'dataMax+10']} margin={{ top: 0, right: 0, left: 0, bottom: 0 }} />
+            <YAxis width={0} axisLine={false} tickLine={false} tick={false} domain={['dataMin-10', 'dataMax+10']} margin={{ top: 1, right: 1, left: 1, bottom: 1 }} />
             <Tooltip
-              cursor={<CustomCursor height={250} />}
+              cursor={<CustomCursor height={225} />}
               formatter={(value) => [`${value} min`, 'Durée']}
               labelFormatter={() => ''}
             />
@@ -68,9 +75,11 @@ function AverageSessions({ sessions = [] }) {
               strokeWidth={2}
               dot={false}
               activeDot={{ r: 4, strokeWidth: 2, stroke: '#fff' }}
+              width="150%"
             />
           </LineChart>
         </ResponsiveContainer>
+        </div>
       </div>
     </section>
   )

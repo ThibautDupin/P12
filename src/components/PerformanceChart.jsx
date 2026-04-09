@@ -43,7 +43,7 @@ function PerformanceChart({ performance }) {
         <RadarChart data={chartData} outerRadius="70%">
           {/* Grille polygonale pour obtenir l'effet octogonal. */}
           <PolarGrid gridType="polygon" radialLines={false} />
-          <PolarAngleAxis dataKey="label" tick={{ fill: '#ffffff', fontSize: 12 }} />
+          <PolarAngleAxis dataKey="label" tick={{ fill: '#ffffff', fontSize: 10 }} />
           {/* Polygone de performance rempli en rouge. */}
           <Radar dataKey="value" fill="#f91616" fillOpacity={0.7} />
         </RadarChart>

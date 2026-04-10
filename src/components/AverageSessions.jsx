@@ -53,6 +53,12 @@ function AverageSessions({ sessions = [] }) {
         <div style={{ width: 'calc(100% + 60px)', marginLeft: '-30px', height: '100%' }}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={chartData}>
+            <defs>
+              <linearGradient id="strokeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stopColor="#ffffff" stopOpacity={0.2} />
+                <stop offset="100%" stopColor="#ffffff" stopOpacity={1} />
+              </linearGradient>
+            </defs>
             {/* Axe des jours, uniquement en lettres pour garder une lecture compacte. */}
             <XAxis
               dataKey="dayLabel"
@@ -69,9 +75,9 @@ function AverageSessions({ sessions = [] }) {
             />
             {/* Courbe de durée moyenne (min). */}
             <Line
-              type="monotone"
+              type="natural"
               dataKey="sessionLength"
-              stroke="#ffffff"
+              stroke="url(#strokeGradient)"
               strokeWidth={2}
               dot={false}
               activeDot={{ r: 4, strokeWidth: 2, stroke: '#fff' }}

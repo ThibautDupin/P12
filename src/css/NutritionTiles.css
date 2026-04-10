@@ -7,8 +7,8 @@
 }
 
 .nutrition-tiles__tile {
-  background: #ffffff;
-  border-radius: 12px;
+  background: #FBFBFB;
+  border-radius: 5px;
   padding: 16px 20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
   display: flex;
@@ -21,7 +21,7 @@
 .nutrition-tiles__icon {
   width: 56px;
   height: 56px;
-  border-radius: 12px;
+  border-radius: 5px;
   display: grid;
   place-items: center;
   font-size: 24px;

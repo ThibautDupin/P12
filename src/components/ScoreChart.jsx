@@ -49,8 +49,10 @@ function ScoreChart({ score = 0.7 }) {
           </RadialBarChart>
         </ResponsiveContainer>
         <div className="score-chart__label">
-          <span className="score-chart__value">{percentage}%</span>
-          <span className="score-chart__subtitle">de votre objectif</span>
+          <div className="score-chart__circle">
+            <span className="score-chart__value">{percentage}%</span>
+            <span className="score-chart__subtitle">de votre objectif</span>
+          </div>
         </div>
       </div>
     </section>

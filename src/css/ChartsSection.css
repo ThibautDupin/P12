@@ -28,6 +28,7 @@
   align-items: start;
   flex: 1;
   min-height: 0;
+  background-color: #FFFFFF;
 }
 
 .charts-content__main {

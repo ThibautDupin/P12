@@ -1,6 +1,6 @@
 .score-chart {
-  background: #fff;
-  border-radius: 16px;
+  background: #FBFBFB;
+  border-radius: 5px;
   padding: 16px;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
   display: flex;
@@ -35,6 +35,17 @@
   justify-content: center;
   text-align: center;
   pointer-events: none;
+}
+
+.score-chart__circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 50%;
+  width: 60%;
+  aspect-ratio: 1 / 1;
 }
 
 .score-chart__value {

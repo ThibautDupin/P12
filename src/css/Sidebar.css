@@ -42,7 +42,7 @@
   height: 50px;
   border: none;
   background: #ffffff;
-  border-radius: 0.75rem;
+  border-radius: 5px;
   display: grid;
   place-items: center;
   cursor: pointer;

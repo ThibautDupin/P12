@@ -2,12 +2,25 @@ import {
   Bar,
   BarChart,
   CartesianGrid,
+  Rectangle,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from 'recharts'
 import '../css/DailyActivity.css'
+
+// Curseur personnalisé : rectangle gris semi-transparent derrière les barres au survol.
+const CustomCursor = ({ x, y, width, height }) => (
+  <Rectangle
+    x={x-25}
+    y={y}
+    width={width + 50}
+    height={height}
+    fill="rgba(196, 196, 196, 0.5)"
+    radius={4}
+  />
+)
 
 function DailyActivity({ sessions = [] }) {
   // Formatage des données pour le graphique (noms explicites + valeurs calculées).
@@ -52,7 +65,7 @@ function DailyActivity({ sessions = [] }) {
       </header>
       <div className="activity__chart">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={chartData} barCategoryGap={20} barGap={10} margin={{ top: 1, right: 1, left: 1, bottom: 1 }}>
+          <BarChart data={chartData} barCategoryGap={20} barGap={10} margin={{ top: 1, right: 1, left: 20, bottom: 1 }}>
             {/* Grille horizontale en pointillés pour la lecture */}
             <CartesianGrid strokeDasharray="4 4" vertical={false} />
             <XAxis
@@ -72,6 +85,7 @@ function DailyActivity({ sessions = [] }) {
               ticks={[minWeightFloor, midWeight, maxWeightCeil]}
               tickFormatter={(value) => Math.round(value)}
               tickLine={false}
+              tick={{ dx: 16 }}
             />
             {/* Axe Y de gauche pour les calories (ticks masqués) */}
             <YAxis
@@ -85,6 +99,7 @@ function DailyActivity({ sessions = [] }) {
             />
             {/* Tooltip customisée : affiche la valeur + unité */}
             <Tooltip
+              cursor={<CustomCursor />}
               formatter={(value, name) =>
                 name === 'weight'
                   ? [value, 'Poids']

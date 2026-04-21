@@ -7,7 +7,7 @@ import {
 } from 'recharts'
 import '../css/PerformanceChart.css'
 
-// Traduction des clés métier vers un libellé lisible.
+// Traduction de performance.kind
 const LABELS = {
   cardio: 'Cardio',
   energy: 'Énergie',
@@ -22,8 +22,7 @@ function buildPerformanceData(performance) {
   const kindMap = performance?.kind ?? {}
   const baseData = performance?.data ?? []
 
-  return baseData
-    .map((entry) => {
+  return baseData.map((entry) => {
       const labelKey = kindMap[entry.kind] ?? entry.kind
       return {
         value: entry.value,

@@ -8,8 +8,6 @@ import {
   YAxis,
 } from 'recharts'
 import '../css/AverageSessions.css'
-// Libellés courts pour chaque jour de la semaine (1 = Lundi, 7 = Dimanche).
-const dayLabels = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
 
 // Curseur personnalisé pour assombrir la partie après le point actif.
 const CustomCursor = ({ points, width, height }) => {
@@ -30,7 +28,9 @@ const CustomCursor = ({ points, width, height }) => {
     />
   )
 }
-/*      */
+// Libellés courts pour chaque jour de la semaine (1 = Lundi, 7 = Dimanche).
+const dayLabels = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
+
 function AverageSessions({ sessions = [] }) {
   // Enrichit les sessions avec un libellé lisible pour l'axe des X.
   // Deux points fantômes (début et fin) permettent à la ligne de dépasser les étiquettes.

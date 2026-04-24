@@ -73,7 +73,7 @@ function AverageSessions({ sessions = [] }) {
               formatter={(value) => [`${value} min`, 'Durée']}
               labelFormatter={() => ''}
             />
-            {/* Courbe de durée moyenne (min). */}
+            {/* Courbe de durée moyenne */}
             <Line
               type="natural"
               dataKey="sessionLength"
